@@ -5,9 +5,9 @@ void main() {
     MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.yellow,
         appBar: AppBar(
-          backgroundColor: Colors.red,
+          backgroundColor: Colors.yellow,
           title: Text('Dicee'),
         ),
         body: DicePage(),
@@ -17,7 +17,9 @@ void main() {
 }
 
 class DicePage extends StatelessWidget {
-  Widget build(BuildContext buildContext) {
+  Widget build(BuildContext buildContext)
+  {
+    var diceImageChanger = 3;
     return Center(
       child: Row(
         children: <Widget>[
@@ -28,7 +30,7 @@ class DicePage extends StatelessWidget {
                 onPressed: () {
                   print('Left Button Got Pressed');
                 },
-                child: Image.asset('images/dice1.png'),
+                child: Image.asset('images/dice$diceImageChanger.png'),
               ),
             ),
           ),
