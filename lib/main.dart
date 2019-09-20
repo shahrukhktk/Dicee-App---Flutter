@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 void main() {
   return runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.yellow,
+        backgroundColor: Colors.yellow.shade900,
         appBar: AppBar(
-          backgroundColor: Colors.yellow,
+          backgroundColor: Colors.yellow.shade900,
           title: Text('Dicee'),
         ),
         body: DicePage(),
@@ -16,10 +17,24 @@ void main() {
   );
 }
 
-class DicePage extends StatelessWidget {
-  Widget build(BuildContext buildContext)
-  {
-    var diceImageChanger = 3;
+class DicePage extends StatefulWidget {
+  @override
+  _DicePageState createState() => _DicePageState();
+}
+
+class _DicePageState extends State<DicePage> {
+  var leftDiceImageChanger = 1;
+  var rightDiceImageChanger = 1;
+
+  void DiceChangeMethod() {
+    setState(() {
+      leftDiceImageChanger = Random().nextInt(6) + 1;
+      rightDiceImageChanger = Random().nextInt(6) + 1;
+    });
+  }
+
+  @override
+  Widget build(BuildContext buildContext) {
     return Center(
       child: Row(
         children: <Widget>[
@@ -28,9 +43,9 @@ class DicePage extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: FlatButton(
                 onPressed: () {
-                  print('Left Button Got Pressed');
+                  DiceChangeMethod();
                 },
-                child: Image.asset('images/dice$diceImageChanger.png'),
+                child: Image.asset('images/dice$leftDiceImageChanger.png'),
               ),
             ),
           ),
@@ -38,10 +53,10 @@ class DicePage extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: FlatButton(
-                child: Image.asset('images/dice1.png'),
                 onPressed: () {
-                  print('Right Button Got Pressed');
+                  DiceChangeMethod();
                 },
+                child: Image.asset('images/dice$rightDiceImageChanger.png'),
               ),
             ),
           ),
